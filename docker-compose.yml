@@ -16,6 +16,8 @@ services:
       DNS1: 127.0.0.1#5335
       DNS2: 127.0.0.1#5335
       DNSSEC: "true"
+      # To avoid MacOS Docker issue (https://github.com/pi-hole/docker-pi-hole/issues/951)
+      FTLCONF_CHECK_DISK: 0
     # Volumes for permanent storage
     volumes:
       - './etc-pihole:/etc/pihole'
