@@ -15,7 +15,7 @@ services:
       DNS1: 127.0.0.1#5335
       DNS2: 127.0.0.1#5335
       DNSSEC: "true"
-    # Volumes store your data between container upgrades
+    # Volumes for permanent storage
     volumes:
       - './etc-pihole:/etc/pihole'
       - './etc-dnsmasq.d:/etc/dnsmasq.d'
