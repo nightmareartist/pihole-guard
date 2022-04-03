@@ -3,3 +3,5 @@
 
 # Vim .swp files
 *.swp
+/etc-pihole/
+/etc-dnsmasq.d/
