@@ -2,7 +2,7 @@
 
 <img src="pi-hole-logo.svg" width="150" height="260" alt="Pi-hole">
 
-This repo contains everything needed to setup Pi-Hole with Unbound DNS. The result will be a very lean ad blocking/tracking blocking system protecting your whole network using Unbound to resolve DNS names without having to use any intermediate DNS services. This setup can easily be extended using Wireguard and/or OpenVPN to be used when roaming.
+This repo contains everything needed to setup Pi-Hole with Unbound DNS. The result will be a very lean ad blocking/tracking blocking system protecting your whole network using Unbound to resolve DNS names without having to use any intermediate DNS services. This setup can easily be extended using [Wireguard and/or OpenVPN to be used when roaming](https://docs.pi-hole.net/guides/vpn/wireguard/server/).
 
 ### Requirements
 
