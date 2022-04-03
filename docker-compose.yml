@@ -1,0 +1,24 @@
+version: "3"
+services:
+  pihole-unbound:
+    build: .
+    container_name: pihole-unbound
+    image: pihole-unbound:latest
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "8090:80/tcp"
+    environment:
+      ServerIP: 10.93.0.20
+      TZ: Europe/Stockholm
+      WEBPASSWORD: 'CHANGE-ME'
+      DNS1: 127.0.0.1#5335
+      DNS2: 127.0.0.1#5335
+      DNSSEC: "true"
+    # Volumes store your data between container upgrades
+    volumes:
+      - './etc-pihole:/etc/pihole'
+      - './etc-dnsmasq.d:/etc/dnsmasq.d'
+    cap_add:
+      - NET_ADMIN
+    restart: unless-stopped

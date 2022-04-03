@@ -1,0 +1,5 @@
+# JetBrains tools
+.idea
+
+# Vim .swp files
+*.swp
