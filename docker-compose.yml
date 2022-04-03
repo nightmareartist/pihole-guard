@@ -4,6 +4,7 @@ services:
     build: .
     container_name: pihole-unbound
     image: pihole-unbound:latest
+    hostname: pihole
     ports:
       - "53:53/tcp"
       - "53:53/udp"
