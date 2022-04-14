@@ -12,31 +12,41 @@ networks:
 # Add Wireguard to the setup
 
 services:
-  pihole-unbound:
-    build: .
-    container_name: pihole-unbound
-    image: pihole-unbound:latest
-    hostname: pihole
-    ports:
-      - "53:53/tcp"
-      - "53:53/udp"
-      - "8090:80/tcp"
-    environment:
-      ServerIP: 10.93.0.20
-      TZ: Europe/Stockholm
-      WEBPASSWORD: 'CHANGE-ME'
-      DNS1: 127.0.0.1#5335
-      DNS2: 127.0.0.1#5335
-      DNSSEC: "true"
-      # To avoid MacOS Docker issue (https://github.com/pi-hole/docker-pi-hole/issues/951)
-      FTLCONF_CHECK_DISK: 0
-    # Volumes for permanent storage
+  unbound:
+    image: "mvance/unbound:latest"
+    container_name: unbound
+    restart: unless-stopped
+    hostname: "unbound"
     volumes:
-      - './etc-pihole:/etc/pihole'
-      - './etc-dnsmasq.d:/etc/dnsmasq.d'
+      - "./unbound:/opt/unbound/etc/unbound/"
     networks:
       private_network:
         ipv4_address: 10.65.0.100
-    cap_add:
-      - NET_ADMIN
-    restart: unless-stopped
+#  pihole-unbound:
+#    build: .
+#    container_name: pihole-unbound
+#    image: pihole-unbound:latest
+#    hostname: pihole
+#    ports:
+#      - "53:53/tcp"
+#      - "53:53/udp"
+#      - "8090:80/tcp"
+#    environment:
+#      ServerIP: 10.93.0.20
+#      TZ: Europe/Stockholm
+#      WEBPASSWORD: 'CHANGE-ME'
+#      DNS1: 127.0.0.1#5335
+#      DNS2: 127.0.0.1#5335
+#      DNSSEC: "true"
+#      # To avoid MacOS Docker issue (https://github.com/pi-hole/docker-pi-hole/issues/951)
+#      FTLCONF_CHECK_DISK: 0
+#    # Volumes for permanent storage
+#    volumes:
+#      - './etc-pihole:/etc/pihole'
+#      - './etc-dnsmasq.d:/etc/dnsmasq.d'
+#    networks:
+#      private_network:
+#        ipv4_address: 10.65.0.100
+#    cap_add:
+#      - NET_ADMIN
+#    restart: unless-stopped
