@@ -5,7 +5,7 @@ networks:
     ipam:
       driver: default
       config:
-        - subnet: 10.1.0.0/24
+        - subnet: 10.65.0.0/24
 
 # TODO
 # Split pihole and unbound into separate containers
@@ -36,7 +36,7 @@ services:
       - './etc-dnsmasq.d:/etc/dnsmasq.d'
     networks:
       private_network:
-        ipv4_address: 10.1.0.100
+        ipv4_address: 10.65.0.100
     cap_add:
       - NET_ADMIN
     restart: unless-stopped
