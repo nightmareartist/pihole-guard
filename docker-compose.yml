@@ -1,4 +1,16 @@
 version: "3"
+
+networks:
+  private_network:
+    ipam:
+      driver: default
+      config:
+        - subnet: 10.1.0.0/24
+
+# TODO
+# Split pihole and unbound into separate containers
+# Add Wireguard to the setup
+
 services:
   pihole-unbound:
     build: .
@@ -22,6 +34,9 @@ services:
     volumes:
       - './etc-pihole:/etc/pihole'
       - './etc-dnsmasq.d:/etc/dnsmasq.d'
+    networks:
+      private_network:
+        ipv4_address: 10.1.0.100
     cap_add:
       - NET_ADMIN
     restart: unless-stopped
